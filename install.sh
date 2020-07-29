@@ -23,8 +23,10 @@ install_docker () {
     #newgrp docker 
     #sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
     #sudo chmod g+rwx "$HOME/.docker" -R
+    sudo systemctl unmask docker
     sudo systemctl start docker
     sudo systemctl enable docker
+    sleep 5
 }
 
 exit_if_null () {
@@ -47,9 +49,10 @@ check_docker(){
     fi
 }
 
+
+exit_if_null "$1" "Missing parameter: domain (eg. deployify.io)"
 #install_docker
 check_docker
-exit_if_null "$1" "Missing parameter: domain (eg. deployify.io)"
 
 echo creating docker deployify network
 sudo docker network create deployify
