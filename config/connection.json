@@ -1,0 +1,6 @@
+{
+    "vault": "deployify_vault:8200",
+    "neo4j": "deployify_neo4j",
+    "api": "deployify_api:8181",
+    "site": "deployify_site:8080"
+}

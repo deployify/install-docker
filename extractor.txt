@@ -1,0 +1,28 @@
+#!/bin/sh
+
+ZIP=MDC_docker
+ZIP_DIR=./$ZIP
+ZIP_FILE=$ZIP.zip
+
+echo Cleaning old extraction dir...
+sudo rm -r $ZIP_DIR
+
+echo Creating new extraction dir...
+sudo mkdir -p $ZIP_DIR
+
+echo Installing unzip...
+sudo apt-get update && sudo apt-get install unzip
+
+echo Downloading installation zip...
+sudo curl -L https://deployify.io/download_file/171/0 -o $ZIP_FILE
+
+echo Extracting installation zip...
+sudo unzip $ZIP_FILE -d $ZIP_DIR
+
+cd $ZIP_DIR
+echo Running installer...
+sudo sh install.sh $1
+cd ../
+sudo rm -r $ZIP_DIR
+sudo rm $ZIP_FILE
+
