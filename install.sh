@@ -66,7 +66,7 @@ cp -n $LOCAL_CONFIG/mailer.json $CONFIG
 cp -n $LOCAL_CONFIG/main.json $CONFIG
 cp -n $LOCAL_CONFIG/security.json $CONFIG
 
-sudo sed -i 's/"domainName":.*/"domainName": "'$1'",/g' $CONFIG/main.json
+sudo sed -i 's/"domainName":.*,/"domainName": "'$1'",/g' $CONFIG/main.json
 
 echo copying scripts...
 cp ./deploy_neo4j_container.sh $SCRIPTS
