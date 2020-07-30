@@ -6,10 +6,10 @@ PROXY=deployify/proxy:1.0.0
 VAULT=deployify/vault:1.0.0
 NEO4J=neo4j:3.5
 
-ROOT=$HOME/deployify
+ROOT_DIR=/var/lib/deployify
 
-CONFIG_MAIN=$ROOT/data/config/main.json
-BACKUP_FILE=$ROOT/backup-linux
+CONFIG_MAIN=$ROOT_DIR/data/config/main.json
+BACKUP_FILE=$ROOT_DIR/backup-linux
 
 MATCH=downloaded
 SHOULD_UPDATE=false
@@ -60,7 +60,7 @@ while [ 1 ]; do
 	RESULT=$(docker pull $API)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"
-	
+
 	RESULT=$(docker pull $NEO4J)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"

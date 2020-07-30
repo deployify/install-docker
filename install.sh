@@ -79,7 +79,7 @@ cp ./scripts/* $SCRIPTS
 echo "copying backup..."
 cp ./backup-linux $ROOT_DIR
 sudo chmod 700 $ROOT_DIR/backup-linux
-sudo chmod 700 $SCRIPTS/deployify_updater.sh
+sudo chmod 700 $SCRIPTS/auto_updater.sh
 
 sudo cp deployify-updater.service /etc/systemd/system/
 
