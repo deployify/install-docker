@@ -85,7 +85,7 @@ sudo chmod 700 $ROOT_DIR/backup-linux
 sudo chmod 700 $SCRIPTS/auto_updater.sh
 
 sudo sh $SCRIPTS/deploy_portainer_container.sh
-(cd $SCRIPTS && sudo sh $SCRIPTS/init.sh)
+(cd $SCRIPTS && sudo sh init.sh)
 
 sudo cp deployify-updater.service /etc/systemd/system/
 sudo systemctl daemon-reload
