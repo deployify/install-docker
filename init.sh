@@ -7,3 +7,4 @@ sh ./deploy_site_container.sh
 sh ./deploy_vault_container.sh
 sh ./deploy_api_container.sh
 sh ./deploy_proxy_container.sh
+docker image prune -af --filter "label!=deployify"
