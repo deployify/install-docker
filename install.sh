@@ -59,8 +59,14 @@ echo "creating docker deployify network..."
 sudo docker network create deployify
 
 echo "creating $ROOT_DIR..."
-mkdir -p $CONFIG
-mkdir -p $SCRIPTS
+
+sudo mkdir -p $ROOT_DIR
+chown :$(id -g) $ROOT_DIR
+sudo chmod 775 $ROOT_DIR
+sudo chmod g+s $ROOT_DIR
+
+sudo mkdir -p $CONFIG
+sudo mkdir -p $SCRIPTS
 
 echo "copying config files..."
 cp $LOCAL_CONFIG/connection.json $CONFIG
