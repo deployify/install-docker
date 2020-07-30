@@ -42,12 +42,10 @@ check_docker() {
         write_success "Docker is installed."
     else
         install_docker
-        #write_error "Docker is not installed, aborting."
     fi
 }
 
 exit_if_null "$1" "Missing parameter: domain (eg. deployify.io)"
-#install_docker
 check_docker
 
 echo "creating docker deployify network..."
@@ -61,9 +59,6 @@ echo "adding user deployify..."
 sudo useradd deployify
 echo "adding deployify to group docker..."
 sudo usermod -aG docker deployify
-
-echo "setting permissions for $ROOT_DIR..."
-sudo chown -R deployify:deployify $ROOT_DIR
 
 echo "copying config files..."
 cp $LOCAL_CONFIG/connection.json $CONFIG

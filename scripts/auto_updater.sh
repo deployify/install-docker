@@ -9,6 +9,7 @@ NEO4J=neo4j:3.5
 ROOT_DIR=/var/lib/deployify
 
 CONFIG_MAIN=$ROOT_DIR/data/config/main.json
+INIT_FILE=$ROOT_DIR/scripts/init.sh
 BACKUP_FILE=$ROOT_DIR/backup-linux
 
 MATCH=downloaded
@@ -29,8 +30,9 @@ do_update() {
 	$BACKUP_FILE backup
 
 	if [ "$?" == 0 ]; then
-		local DOMAIN_NAME=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG_MAIN)
-		curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
+		#local DOMAIN_NAME=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG_MAIN)
+		#curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
+		init.sh
 	else
 		echo "Backup failed, aborting update."
 		exit $?
@@ -40,7 +42,7 @@ do_update() {
 
 format_result() {
 	local TEMP=$(echo "|$1|" | tr '\n' ' ')
-	TEMP=$(echo $TEMP | tr '[:upper:]' '[:lower:]')	
+	TEMP=$(echo $TEMP | tr '[:upper:]' '[:lower:]')
 }
 
 while [ 1 ]; do
@@ -68,5 +70,5 @@ while [ 1 ]; do
 		do_update
 	fi
 
-	sleep 600000
+	sleep 5
 done
