@@ -62,7 +62,7 @@ echo "creating $ROOT_DIR..."
 
 sudo mkdir -p $ROOT_DIR
 chown :$(id -g) $ROOT_DIR
-sudo chmod 775 $ROOT_DIR
+sudo chmod 770 $ROOT_DIR
 sudo chmod g+s $ROOT_DIR
 
 sudo mkdir -p $CONFIG
