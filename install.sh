@@ -76,6 +76,9 @@ cp ./backup-linux $ROOT_DIR
 sudo chmod 700 $ROOT_DIR/backup-linux
 sudo chmod 700 $SCRIPTS/auto_updater.sh
 
-sudo cp deployify-updater.service /etc/systemd/system/
-
 sudo sh $SCRIPTS/init.sh
+
+sudo cp deployify-updater.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable vault
+sudo systemctl start vault
