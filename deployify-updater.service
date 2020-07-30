@@ -6,7 +6,7 @@ After=network-online.target
 [Service]
 Restart=on-failure
 ExecStart=/var/lib/deployify/scripts/auto_updater.sh
-User=deployify
+User=root
 
 [Install]
 WantedBy=multi-user.target

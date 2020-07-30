@@ -50,10 +50,10 @@ check_docker() {
 exit_if_null "$1" "Missing parameter: domain (eg. deployify.io)"
 check_docker
 
-echo "adding user deployify..."
-sudo useradd deployify
-echo "adding deployify to group docker..."
-sudo usermod -aG docker deployify
+#echo "adding user deployify..."
+#sudo useradd deployify
+#echo "adding deployify to group docker..."
+#sudo usermod -aG docker deployify
 
 echo "creating docker deployify network..."
 sudo docker network create deployify
