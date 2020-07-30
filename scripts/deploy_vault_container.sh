@@ -3,7 +3,7 @@
 CONTAINER=deployify_vault
 IMAGE=deployify/vault:1.0.0
 DATA=/var/lib/deployify/data
-USER_GROUP=deployify:deployify
+USER_GROUP=$(id -u):$(id -g)
 
 echo Updating $IMAGE...
 docker pull $IMAGE

@@ -3,7 +3,7 @@
 CONTAINER=deployify_neo4j
 IMAGE=neo4j:3.5
 DATA=/var/lib/deployify/data
-USER_GROUP=deployify:deployify
+USER_GROUP=$(id -u):$(id -g)
 
 echo Updating $IMAGE...
 docker pull $IMAGE
