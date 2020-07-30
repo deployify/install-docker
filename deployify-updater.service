@@ -1,0 +1,12 @@
+[Unit]
+Description=Deployify auto update service
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+ExecStart=/var/lib/deployify/scripts/deployify_updater.sh
+User=deployify
+
+[Install]
+WantedBy=multi-user.target
