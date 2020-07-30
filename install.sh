@@ -48,17 +48,17 @@ check_docker() {
 exit_if_null "$1" "Missing parameter: domain (eg. deployify.io)"
 check_docker
 
+echo "adding user deployify..."
+sudo useradd deployify
+echo "adding deployify to group docker..."
+sudo usermod -aG docker deployify
+
 echo "creating docker deployify network..."
 sudo docker network create deployify
 
 echo "creating $ROOT_DIR..."
 mkdir -p $CONFIG
 mkdir -p $SCRIPTS
-
-echo "adding user deployify..."
-sudo useradd deployify
-echo "adding deployify to group docker..."
-sudo usermod -aG docker deployify
 
 echo "copying config files..."
 cp $LOCAL_CONFIG/connection.json $CONFIG
@@ -78,4 +78,4 @@ sudo chmod 700 $SCRIPTS/auto_updater.sh
 
 sudo cp deployify-updater.service /etc/systemd/system/
 
-sh $SCRIPTS/init.sh
+sudo sh $SCRIPTS/init.sh
