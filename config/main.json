@@ -1,5 +1,5 @@
 {
-    "domainName": null,
+    "domainName": "",
     "emailEnabled": false,    
     "resetPasswordEnabled": false,
     "twoFactorAuthEnabled": false,

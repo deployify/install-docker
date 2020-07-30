@@ -1,21 +1,21 @@
 {
         "documentation": "https://nodemailer.com",
-        "host": "@mailHost",
-        "port": "@mailPort",
+        "host": "",
+        "port": "",
         "secure": true,
-        "from": "@mailFrom",
+        "from": "",
 
         "auth": {
-            "user": "@mailUser",
-            "pass": "@mailPass"
+            "user": "",
+            "pass": ""
         },
 
         "requireTLS": true,
 
         "dkim": {
-            "domainName": "@domainName",
-            "keySelector": "@keySelector",
-            "privateKey": "fullPathToFile"
+            "domainName": "",
+            "keySelector": "",
+            "privateKey": ""
         }
     
 }
