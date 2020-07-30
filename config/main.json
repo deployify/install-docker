@@ -1,8 +1,8 @@
 {
-    "domainName": "",
-    "emailEnabled": false,    
-    "resetPasswordEnabled": false,
-    "twoFactorAuthEnabled": false,
-    "webUnsealEnabled": false,
-    "publicSignupEnabled": true    
+  "domainName": "",
+  "emailEnabled": false,
+  "resetPasswordEnabled": false,
+  "twoFactorAuthEnabled": false,
+  "webUnsealEnabled": false,
+  "publicSignupEnabled": true
 }
