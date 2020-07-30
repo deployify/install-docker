@@ -40,8 +40,8 @@ check_docker() {
     docker --version | grep "Docker version"
     if [ $? -eq 0 ]; then
         write_success "Docker is installed."
-        sudo apt-get update
-        sudo apt-get upgrade docker.io
+        #sudo apt-get update
+        #sudo apt-get upgrade docker.io
     else
         install_docker
     fi
@@ -82,5 +82,5 @@ sudo sh $SCRIPTS/init.sh
 
 sudo cp deployify-updater.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable vault
-sudo systemctl start vault
+sudo systemctl enable deployify-updater
+sudo systemctl start deployify-updater
