@@ -40,8 +40,7 @@ do_update() {
 
 format_result() {
 	local TEMP=$(echo "|$1|" | tr '\n' ' ')
-	TEMP=$(echo $TEMP | tr '[:upper:]' '[:lower:]')
-	echo $TEMP
+	TEMP=$(echo $TEMP | tr '[:upper:]' '[:lower:]')	
 }
 
 while [ 1 ]; do
@@ -69,5 +68,5 @@ while [ 1 ]; do
 		do_update
 	fi
 
-	sleep 5
+	sleep 600000
 done
