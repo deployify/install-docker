@@ -69,18 +69,18 @@ sudo mkdir -p $CONFIG
 sudo mkdir -p $SCRIPTS
 
 echo "copying config files..."
-cp $LOCAL_CONFIG/connection.json $CONFIG
-cp -n $LOCAL_CONFIG/mailer.json $CONFIG
-cp -n $LOCAL_CONFIG/main.json $CONFIG
-cp -n $LOCAL_CONFIG/security.json $CONFIG
+sudo cp $LOCAL_CONFIG/connection.json $CONFIG
+sudo cp -n $LOCAL_CONFIG/mailer.json $CONFIG
+sudo cp -n $LOCAL_CONFIG/main.json $CONFIG
+sudo cp -n $LOCAL_CONFIG/security.json $CONFIG
 
 sudo sed -i 's/"domainName":.*",/"domainName": "'$1'",/g' $CONFIG/main.json
 
 echo "copying scripts..."
-cp ./scripts/* $SCRIPTS
+sudo cp ./scripts/* $SCRIPTS
 
 echo "copying backup..."
-cp ./backup-linux $ROOT_DIR
+sudo cp ./backup-linux $ROOT_DIR
 sudo chmod 700 $ROOT_DIR/backup-linux
 sudo chmod 700 $SCRIPTS/auto_updater.sh
 
