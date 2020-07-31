@@ -3,7 +3,6 @@
 CONTAINER=deployify_api
 IMAGE=deployify/api:1.0.0
 DATA=/var/lib/deployify/data
-DBUS=/var/lib/dbus
 USER_GROUP=$(id -u):$(id -g)
 
 echo Updating $IMAGE...
@@ -16,4 +15,4 @@ echo "Removing $CONTAINER..."
 docker rm $CONTAINER -v -f
 
 echo "Initiating $CONTAINER..."
-docker run --name $CONTAINER --network deployify --user $USER_GROUP -d -v $DATA/config:/config -v $DATA/repos:/nugetserver/repos -v $DBUS:$DBUS -v $DATA/vault:/vault -ti $IMAGE
+docker run --name $CONTAINER --network deployify --user $USER_GROUP -d -v $DATA/config:/config -v $DATA/repos:/nugetserver/repos -v $DATA/vault:/vault -ti $IMAGE

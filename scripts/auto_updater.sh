@@ -70,6 +70,8 @@ while [ 1 ]; do
 
 	if [ $SHOULD_UPDATE = true ]; then
 		do_update
+	else
+		echo "No updates found."
 	fi
 
 	sleep 60
