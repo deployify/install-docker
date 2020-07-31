@@ -16,7 +16,6 @@ MATCH=downloaded
 SHOULD_UPDATE=false
 
 check_update() {
-	echo "$1"
 	if [[ "$1" == *"$MATCH"* ]]; then
 		echo "New image found, will update after image check."
 		SHOULD_UPDATE=true
@@ -43,6 +42,7 @@ do_update() {
 format_result() {
 	local TEMP=$(echo "|$1|" | tr '\n' ' ')
 	TEMP=$(echo $TEMP | tr '[:upper:]' '[:lower:]')
+	echo $TEMP
 }
 
 while [ 1 ]; do
