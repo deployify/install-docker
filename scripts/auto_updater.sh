@@ -32,7 +32,7 @@ do_update() {
 	if [ "$?" == 0 ]; then
 		#local DOMAIN_NAME=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG_MAIN)
 		#curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
-		init.sh
+		./init.sh
 	else
 		echo "Backup failed, aborting update."
 		exit $?
