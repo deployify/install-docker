@@ -70,5 +70,5 @@ while [ 1 ]; do
 		do_update
 	fi
 
-	sleep 5
+	sleep 30
 done
