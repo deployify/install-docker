@@ -4,6 +4,7 @@ ROOT_DIR=/var/lib/deployify
 SCRIPTS=$ROOT_DIR/scripts
 DATA=$ROOT_DIR/data
 CONFIG=$DATA/config
+CERTS=$DATA/certs
 LOCAL_CONFIG=./config
 
 write_error() {
@@ -80,6 +81,7 @@ sudo chmod g+s $ROOT_DIR
 
 sudo mkdir -p $CONFIG
 sudo mkdir -p $SCRIPTS
+sudo mkdir -p $CERTS
 
 echo "copying config files..."
 sudo cp $LOCAL_CONFIG/connection.json $CONFIG
