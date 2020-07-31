@@ -87,7 +87,8 @@ sudo chmod 700 $SCRIPTS/auto_updater.sh
 sudo sh $SCRIPTS/deploy_portainer_container.sh
 (cd $SCRIPTS && sudo sh ./init.sh)
 
-sudo cp deployify-updater.service /etc/systemd/system/
+sudo chmod 644 ./deployify-updater.service
+sudo cp ./deployify-updater.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable deployify-updater
 sudo systemctl start deployify-updater
