@@ -29,9 +29,10 @@ do_update() {
 	$BACKUP_FILE backup
 
 	if [ "$?" == 0 ]; then
-		#local DOMAIN_NAME=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG_MAIN)
-		#curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
-		sudo ./init.sh
+		local DOMAIN_NAME=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG_MAIN)
+		echo "Starting update for $DOMAIN_NAME..."
+		curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
+		#sudo ./init.sh
 	else
 		echo "Backup failed, aborting update."
 		exit $?
@@ -46,6 +47,7 @@ format_result() {
 }
 
 while [ 1 ]; do
+	echo "Looking for Deployify image updates..."
 	RESULT=$(sudo docker pull $SITE)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"
@@ -70,5 +72,5 @@ while [ 1 ]; do
 		do_update
 	fi
 
-	sleep 30
+	sleep 60
 done

@@ -8,8 +8,11 @@ USER_GROUP=$(id -u):$(id -g)
 echo Updating $IMAGE...
 docker pull $IMAGE
 
-echo Removing $CONTAINER...
+echo "Stopping $CONTAINER..."
+docker stop $CONTAINER
+
+echo "Removing $CONTAINER..."
 docker rm $CONTAINER -v -f
 
-echo Initiating $CONTAINER...
+echo "Initiating $CONTAINER..."
 docker run --name $CONTAINER --network deployify --user $USER_GROUP -d -v $DATA/config:/config -v $DATA/repos:/nugetserver/repos -v $DATA/vault:/vault -ti $IMAGE
