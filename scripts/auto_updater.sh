@@ -32,7 +32,7 @@ do_update() {
 	if [ "$?" == 0 ]; then
 		#local DOMAIN_NAME=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG_MAIN)
 		#curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
-		./init.sh
+		sudo ./init.sh
 	else
 		echo "Backup failed, aborting update."
 		exit $?
@@ -46,23 +46,23 @@ format_result() {
 }
 
 while [ 1 ]; do
-	RESULT=$(docker pull $SITE)
+	RESULT=$(sudo docker pull $SITE)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"
 
-	RESULT=$(docker pull $PROXY)
+	RESULT=$(sudo docker pull $PROXY)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"
 
-	RESULT=$(docker pull $VAULT)
+	RESULT=$(sudo docker pull $VAULT)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"
 
-	RESULT=$(docker pull $API)
+	RESULT=$(sudo docker pull $API)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"
 
-	RESULT=$(docker pull $NEO4J)
+	RESULT=$(sudo docker pull $NEO4J)
 	RESULT=$(format_result "$RESULT")
 	check_update "$RESULT"
 
