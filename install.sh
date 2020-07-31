@@ -14,8 +14,21 @@ write_success() {
     echo "$(tput setaf 2)$1 $(tput sgr 0)"
 }
 
+check_apt_lock() {
+    locked1=$(sudo lsof /var/lib/dpkg/lock-frontend)
+    locked2=$(sudo lsof /var/lib/apt/lists/lock)
+
+    if [ -z "$locked1" ] && [ -z "$locked2" ]; then
+        write_success "apt-get OK."
+    else
+        write_error "apt-get is busy with other work, please try again later."
+        exit 12
+    fi
+}
+
 install_docker() {
     #sudo sh ./install_docker.sh
+    check_apt_lock
     sudo apt-get update
     sudo apt-get -y install docker.io
     #sudo groupadd docker
@@ -93,3 +106,5 @@ sudo cp ./deployify-updater.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable deployify-updater
 sudo systemctl restart deployify-updater
+
+exit 0
