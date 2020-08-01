@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ROOT_DIR=/var/lib/deployify
 SCRIPTS=$ROOT_DIR/scripts
