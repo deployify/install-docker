@@ -6,6 +6,7 @@ DATA=$ROOT_DIR/data
 CONFIG=$DATA/config
 CERTS=$DATA/certs
 LOCAL_CONFIG=./config
+CONNECTION_MANAGEMENT_VAR=""
 
 write_error() {
     echo "$(tput setaf 1)$1 $(tput sgr 0)"
@@ -51,9 +52,13 @@ exit_if_null() {
 }
 
 check_connection_management_var() {
-    local $VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)
-    if [ "$VAR" != "" ]; then
-        CONNECTION_MANAGEMENT_VAR=$VAR
+    if [ -f "$CONFIG/connection.json" ]; then
+        local VAR=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG/connection.json)
+        if [ "$VAR" != "" ]; then
+            CONNECTION_MANAGEMENT_VAR=$VAR
+        fi
+    else
+        echo "$CONFIG/connection.json does not exist."
     fi
 }
 
