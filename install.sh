@@ -62,7 +62,7 @@ check_connection_management_var() {
 migrate_management_var() {
     if [ "$CONNECTION_MANAGEMENT_VAR" != '' ]; then
         echo "Migrating management connection var..."
-        sudo sed -i 's/"management":.*"/"management": "$CONNECTION_MANAGEMENT_VAR"/g'
+        sudo sed -i 's/"management":.*"/"management": "$CONNECTION_MANAGEMENT_VAR"/g' $CONFIG/connection.json
     else
         echo "No management connection var, no migration needed."
     fi
