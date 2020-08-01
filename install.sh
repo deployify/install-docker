@@ -20,7 +20,7 @@ check_apt_lock() {
     locked2=$(sudo lsof /var/lib/apt/lists/lock)
 
     if [ -z "$locked1" ] && [ -z "$locked2" ]; then
-        write_success "apt-get OK."
+        echo "apt-get OK."
     else
         write_error "apt-get is busy with other work, please try again later."
         exit 12
