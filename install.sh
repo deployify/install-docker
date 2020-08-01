@@ -20,7 +20,7 @@ check_apt_lock() {
     locked2=$(sudo lsof /var/lib/apt/lists/lock)
 
     if [ -z "$locked1" ] && [ -z "$locked2" ]; then
-        echo "apt-get OK."
+        write_success "apt-get OK."
     else
         write_error "apt-get is busy with other work, please try again later."
         exit 12
@@ -52,7 +52,7 @@ exit_if_null() {
 
 check_connection_management_var() {
     local $VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)
-    if [ $VAR != '""' ]; then
+    if [ $VAR != "" ]; then
         CONNECTION_MANAGEMENT_VAR=$VAR
     fi
 }

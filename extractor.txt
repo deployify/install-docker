@@ -1,5 +1,13 @@
 #!/bin/sh
 
+write_error() {
+    echo "$(tput setaf 1)$1 $(tput sgr 0)"
+}
+
+write_success() {
+    echo "$(tput setaf 2)$1 $(tput sgr 0)"
+}
+
 check_apt_lock() {
     locked1=$(sudo lsof /var/lib/dpkg/lock-frontend)
     locked2=$(sudo lsof /var/lib/apt/lists/lock)
