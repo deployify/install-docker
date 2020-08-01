@@ -53,10 +53,7 @@ exit_if_null() {
 
 check_connection_management_var() {
     if [ -f "$CONFIG/connection.json" ]; then
-        local VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)        
-        if [ "$VAR" != "" ]; then
-            CONNECTION_MANAGEMENT_VAR=$VAR
-        fi
+        CONNECTION_MANAGEMENT_VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)        
     else
         echo "$CONFIG/connection.json does not exist."
     fi
