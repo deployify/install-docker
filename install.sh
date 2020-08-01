@@ -122,8 +122,8 @@ sudo cp ./backup-linux $ROOT_DIR
 sudo chmod 700 $ROOT_DIR/backup-linux
 sudo chmod 700 $SCRIPTS/auto_updater.sh
 
-sudo $SCRIPTS/deploy_portainer_container.sh
 (cd $SCRIPTS && sudo ./init.sh)
+sudo $SCRIPTS/deploy_portainer_container.sh
 
 echo "installing auto update service..."
 sudo chmod 644 ./deployify-updater.service

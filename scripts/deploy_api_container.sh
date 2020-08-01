@@ -15,4 +15,4 @@ echo "Removing $CONTAINER..."
 sudo docker rm $CONTAINER -v -f
 
 echo "Initiating $CONTAINER..."
-sudo docker run --name $CONTAINER --network deployify --user $USER_GROUP -d -v $DATA/config:/config -v $DATA/repos:/nugetserver/repos -v $DATA/vault:/vault -ti $IMAGE
+sudo docker run --name $CONTAINER --network deployify --user $USER_GROUP --restart=always -d -v $DATA/config:/config -v $DATA/repos:/nugetserver/repos -v $DATA/vault:/vault -ti $IMAGE

@@ -11,4 +11,4 @@ echo "Removing $CONTAINER..."
 sudo docker rm $CONTAINER -v -f
 
 echo "Initiating $CONTAINER..."
-sudo docker run --name $CONTAINER --network deployify -d -ti $IMAGE
+sudo docker run --name $CONTAINER --network deployify --restart=always -d -ti $IMAGE
