@@ -52,13 +52,13 @@ exit_if_null() {
 
 check_connection_management_var() {
     local $VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)
-    if [ $VAR != "" ]; then
+    if [ "$VAR" != "" ]; then
         CONNECTION_MANAGEMENT_VAR=$VAR
     fi
 }
 
 migrate_management_var() {
-    if [ $CONNECTION_MANAGEMENT_VAR != '' ]; then
+    if [ "$CONNECTION_MANAGEMENT_VAR" != '' ]; then
         echo "Migrating management connection var..."
         sudo sed -i 's/"management":.*"/"management": "$CONNECTION_MANAGEMENT_VAR"/g'
     else
@@ -120,8 +120,8 @@ sudo cp ./backup-linux $ROOT_DIR
 sudo chmod 700 $ROOT_DIR/backup-linux
 sudo chmod 700 $SCRIPTS/auto_updater.sh
 
-sudo sh $SCRIPTS/deploy_portainer_container.sh
-(cd $SCRIPTS && sudo sh ./init.sh)
+sudo $SCRIPTS/deploy_portainer_container.sh
+(cd $SCRIPTS && sudo ./init.sh)
 
 echo "installing auto update service..."
 sudo chmod 644 ./deployify-updater.service
