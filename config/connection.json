@@ -3,5 +3,5 @@
   "neo4j": "deployify_neo4j",
   "api": "deployify_api:8181",
   "site": "deployify_site:8080",
-  "management": "deployify_management:9000"
+  "management": ""
 }

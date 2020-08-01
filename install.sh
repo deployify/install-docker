@@ -50,6 +50,22 @@ exit_if_null() {
     fi
 }
 
+check_connection_management_var() {
+    local $VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)
+    if [ $VAR != '""' ]; then
+        CONNECTION_MANAGEMENT_VAR=$VAR
+    fi
+}
+
+migrate_management_var() {
+    if [ $CONNECTION_MANAGEMENT_VAR != '' ]; then
+        echo "Migrating management connection var..."
+        sudo sed -i 's/"management":.*"/"management": "$CONNECTION_MANAGEMENT_VAR"/g'
+    else
+        echo "No management connection var, no migration needed."
+    fi
+}
+
 check_docker() {
     docker --version | grep "Docker version"
     if [ $? -eq 0 ]; then
@@ -83,8 +99,13 @@ sudo mkdir -p $CONFIG
 sudo mkdir -p $SCRIPTS
 sudo mkdir -p $CERTS
 
+echo "Getting management variable in $CONFIG/connection.json"
+check_connection_management_var
+echo "management variable: $CONNECTION_MANAGEMENT_VAR"
+
 echo "copying config files..."
 sudo cp $LOCAL_CONFIG/connection.json $CONFIG
+migrate_management_var
 sudo cp -n $LOCAL_CONFIG/mailer.json $CONFIG
 sudo cp -n $LOCAL_CONFIG/main.json $CONFIG
 sudo cp -n $LOCAL_CONFIG/security.json $CONFIG
