@@ -74,5 +74,5 @@ while [ 1 ]; do
 		echo "No updates found."
 	fi
 
-	sleep 60
+	sleep 86400
 done
