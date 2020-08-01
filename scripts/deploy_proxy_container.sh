@@ -6,10 +6,10 @@ DATA=/var/lib/deployify/data
 USER_GROUP=$(id -u):$(id -g)
 
 echo "Updating $IMAGE..."
-docker pull $IMAGE
+sudo docker pull $IMAGE
 
 echo "Removing $CONTAINER..."
-docker rm $CONTAINER -v -f
+sudo docker rm $CONTAINER -v -f
 
 echo "Initiating $CONTAINER..."
-docker run --name $CONTAINER --network deployify --user $USER_GROUP -p80:80 -p81:81 -p443:443 -d -v $DATA/config:/config -v $DATA/certs:/certs -ti $IMAGE
+sudo docker run --name $CONTAINER --network deployify --user $USER_GROUP -p80:80 -p81:81 -p443:443 -d -v $DATA/config:/config -v $DATA/certs:/certs -ti $IMAGE
