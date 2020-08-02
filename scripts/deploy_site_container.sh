@@ -8,7 +8,7 @@ echo "Updating $IMAGE..."
 sudo docker pull $IMAGE
 
 echo "Removing $CONTAINER..."
-sudo docker rm $CONTAINER -v -f
+sudo docker rm $CONTAINER -f
 
 echo "Initiating $CONTAINER..."
 sudo docker run --name $CONTAINER --network deployify --restart=always -d -ti $IMAGE

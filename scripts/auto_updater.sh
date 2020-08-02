@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Images to pull
 API=deployify/api:1.0.0
 SITE=deployify/site:1.0.0
 PROXY=deployify/proxy:1.0.0
@@ -26,13 +27,13 @@ do_update() {
 	SHOULD_UPDATE=false
 
 	echo "Creating a new backup..."
-	$BACKUP_FILE backup
+	sudo $BACKUP_FILE backup
 
 	if [ "$?" == 0 ]; then
 		local DOMAIN_NAME=$(grep -oP '(?<="domainName": ")[^"]*' $CONFIG_MAIN)
 		echo "Starting update for $DOMAIN_NAME..."
-		curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
-		#sudo ./init.sh
+		#curl -L https://raw.githubusercontent.com/deployify/install-docker/master/extractor.txt | sudo bash -s $DOMAIN_NAME
+		sudo ./init.sh
 	else
 		echo "Backup failed, aborting update."
 		exit $?
