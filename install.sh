@@ -28,16 +28,10 @@ check_apt_lock() {
     fi
 }
 
-install_docker() {
-    #sudo sh ./install_docker.sh
+install_docker() {    
     check_apt_lock
     sudo apt-get update
-    sudo apt-get -y install docker.io
-    #sudo groupadd docker
-    #sudo usermod -aG docker $USER
-    #newgrp docker
-    #sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-    #sudo chmod g+rwx "$HOME/.docker" -R
+    sudo apt-get -y install docker.io    
     sudo systemctl unmask docker
     sudo systemctl start docker
     sudo systemctl enable docker
@@ -71,9 +65,7 @@ migrate_management_var() {
 check_docker() {
     docker --version | grep "Docker version"
     if [ $? -eq 0 ]; then
-        write_success "Docker is installed."
-        #sudo apt-get update
-        #sudo apt-get upgrade docker.io
+        write_success "Docker is installed."        
     else
         install_docker
     fi
@@ -81,11 +73,6 @@ check_docker() {
 
 exit_if_null "$1" "Missing parameter: domain (eg. deployify.io)"
 check_docker
-
-#echo "adding user deployify..."
-#sudo useradd deployify
-#echo "adding deployify to group docker..."
-#sudo usermod -aG docker deployify
 
 echo "creating docker deployify network..."
 sudo docker network create deployify
