@@ -5,9 +5,6 @@ IMAGE=neo4j:3.5
 DATA=/var/lib/deployify/data
 USER_GROUP=$(id -u):$(id -g)
 
-echo "Updating $IMAGE..."
-sudo docker pull $IMAGE
-
 echo "Stopping $CONTAINER..."
 sudo docker stop $CONTAINER
 
