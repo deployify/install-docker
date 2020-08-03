@@ -28,10 +28,10 @@ check_apt_lock() {
     fi
 }
 
-install_docker() {    
+install_docker() {
     check_apt_lock
     sudo apt-get update
-    sudo apt-get -y install docker.io    
+    sudo apt-get -y install docker.io
     sudo systemctl unmask docker
     sudo systemctl start docker
     sudo systemctl enable docker
@@ -47,7 +47,7 @@ exit_if_null() {
 
 check_connection_management_var() {
     if [ -f "$CONFIG/connection.json" ]; then
-        CONNECTION_MANAGEMENT_VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)        
+        CONNECTION_MANAGEMENT_VAR=$(grep -oP '(?<="management": ")[^"]*' $CONFIG/connection.json)
     else
         echo "$CONFIG/connection.json does not exist."
     fi
@@ -65,7 +65,7 @@ migrate_management_var() {
 check_docker() {
     docker --version | grep "Docker version"
     if [ $? -eq 0 ]; then
-        write_success "Docker is installed."        
+        write_success "Docker is installed."
     else
         install_docker
     fi
@@ -110,7 +110,9 @@ sudo chmod 700 $ROOT_DIR/backup-linux
 sudo chmod 700 $SCRIPTS/auto_updater.sh
 
 (cd $SCRIPTS && sudo ./init.sh)
-sudo $SCRIPTS/deploy_portainer_container.sh
+if [ "$2" == "management" ]; then
+    sudo $SCRIPTS/deploy_portainer_container.sh
+fi
 
 echo "installing auto update service..."
 sudo chmod 644 ./deployify-updater.service

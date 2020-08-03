@@ -35,7 +35,7 @@ sudo unzip $ZIP_FILE -d $ZIP_DIR
 
 cd $ZIP_DIR
 echo Running installer...
-sudo ./install.sh $1
+sudo ./install.sh $1 $2
 cd ../
 sudo rm -r $ZIP_DIR
 sudo rm $ZIP_FILE
