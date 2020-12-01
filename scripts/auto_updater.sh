@@ -5,7 +5,7 @@ API=deployify/api:1.0.0
 SITE=deployify/site:1.0.0
 PROXY=deployify/proxy:1.0.0
 VAULT=deployify/vault:1.0.0
-NEO4J=neo4j:3.5
+NEO4J=neo4j:4.1
 
 ROOT_DIR=/var/lib/deployify
 
