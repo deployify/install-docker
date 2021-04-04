@@ -114,6 +114,9 @@ if [ "$2" == "management" ]; then
     sudo $SCRIPTS/deploy_portainer_container.sh
 fi
 
+echo "optimizing database memory config..."
+sudo $ROOT_DIR/backup-linux optimize-database
+
 echo "installing auto update service..."
 sudo chmod 644 ./deployify-updater.service
 sudo cp ./deployify-updater.service /etc/systemd/system/
