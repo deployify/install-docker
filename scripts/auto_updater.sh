@@ -48,6 +48,8 @@ format_result() {
 }
 
 while [ 1 ]; do
+	sleep 86400
+	
 	echo "Looking for Deployify image updates..."
 	RESULT=$(sudo docker pull $SITE)
 	RESULT=$(format_result "$RESULT")
@@ -73,7 +75,5 @@ while [ 1 ]; do
 		do_update
 	else
 		echo "No updates found."
-	fi
-
-	sleep 86400
+	fi	
 done
